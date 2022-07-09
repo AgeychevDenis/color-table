@@ -37,12 +37,11 @@ window.addEventListener('DOMContentLoaded', () => {
          colorsList.push({ name: newName, type: newType, color: newColor });
          createColorsList(colorsList, addRows);
 
+         bodyPicker.classList.remove('active');
+
       } else {
          alert('Введите название цвета!')
       }
-
-      bodyPicker.classList.remove('active');
-
    })
 
    function createColorsList(arr, parent) {
