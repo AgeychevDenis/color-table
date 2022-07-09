@@ -1,13 +1,14 @@
 "use strict";
 
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', () => {
    const addTableBtn = document.querySelector('.table__btn-add'),
       addForm = document.querySelector('form'),
+      addRows = document.getElementById('table'),
       inputName = document.getElementById('input_name-color'),
       selectType = document.querySelector('.picker__select-type'),
       сolorText = document.querySelector('.picker__res'),
-      addRows = document.getElementById('table'),
       selectPopup = document.querySelectorAll('.picker__select-popup li'),
+      bodyPicker = document.querySelector('.body__picker'),
       save = document.querySelector('.table__btn-save');
 
    const colorsList = [
@@ -36,11 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
          colorsList.push({ name: newName, type: newType, color: newColor });
          createColorsList(colorsList, addRows);
 
-
       } else {
          alert('Введите название цвета!')
       }
 
+      bodyPicker.classList.remove('active');
 
    })
 
@@ -82,4 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
          selectType.classList.remove('active');
       })
    });
+
+   addTableBtn.addEventListener('click', () => {
+      bodyPicker.classList.add('active');
+   })
 })

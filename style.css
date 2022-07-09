@@ -73,18 +73,26 @@ button {
 }
 
 .container {
+	display: flex;
+	align-items: flex-start;
 	max-width: 1300px;
 	margin: 0 auto;
 }
 
 .body__picker {
+	opacity: 0;
 	position: relative;
 	height: 645px;
 	width: 320px;
 	background-color: #313131;
 	border-radius: 20px;
 	padding: 0 15px;
-	margin: 0 auto;
+	margin: 40px auto;
+	transition: opacity .3s;
+}
+
+.body__picker.active {
+	opacity: 1;
 }
 
 .picker__lable {
