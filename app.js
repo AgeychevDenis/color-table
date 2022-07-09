@@ -1,20 +1,25 @@
 "use strict";
 
 document.addEventListener('DOMContentLoaded', () => {
-   const addColorBtn = document.querySelector('.picker__btn'),
-      addTableBtn = document.querySelector('.table__btn-add'),
+   const addTableBtn = document.querySelector('.table__btn-add'),
       addForm = document.querySelector('form'),
       inputName = document.getElementById('input_name-color'),
       selectType = document.querySelector('.picker__select-type'),
       сolorText = document.querySelector('.picker__res'),
-      addRows = document.getElementById('table');
+      addRows = document.getElementById('table'),
+      selectPopup = document.querySelectorAll('.picker__select-popup li'),
+      save = document.querySelector('.table__btn-save');
 
    const colorsList = [
-      { name: "Мятное утро", type: "main", color: '#86EAE9' },
-      { name: "Лавандовый пунш", type: "side", color: '#B8B2DD' },
-      { name: "Морозное небо", type: "side", color: '#00bfff' }
-   ]
+      { name: "Мятное утро", type: "Main", color: '#86EAE9' },
+      { name: "Лавандовый пунш", type: "Side", color: '#B8B2DD' },
+      { name: "Морозное небо", type: "Side", color: '#00bfff' }
+   ];
 
+   save.addEventListener('click', () => {
+      localStorage.setItem('colorsList', JSON.stringify(colorsList));
+      alert('Данные сохранены')
+   })
 
    addForm.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -30,14 +35,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
          colorsList.push({ name: newName, type: newType, color: newColor });
          createColorsList(colorsList, addRows);
+
+
       } else {
          alert('Введите название цвета!')
       }
 
 
    })
-
-   console.log(сolorText);
 
    function createColorsList(arr, parent) {
       parent.innerHTML = '';
@@ -67,4 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
    createColorsList(colorsList, addRows);
 
+   selectType.addEventListener('click', (e) => {
+      e.target.classList.add('active');
+   });
+
+   selectPopup.forEach(li => {
+      li.addEventListener('click', (e) => {
+         selectType.textContent = e.target.textContent;
+         selectType.classList.remove('active');
+      })
+   });
 })

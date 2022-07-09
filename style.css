@@ -14,7 +14,6 @@
 
 [class^="icon-"],
 [class*=" icon-"] {
-	/* use !important to prevent issues with browser extensions that change fonts */
 	font-family: 'icomoon' !important;
 	speak: never;
 	font-style: normal;
@@ -23,9 +22,17 @@
 	text-transform: none;
 	line-height: 1;
 
-	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+li {
+	list-style-type: none;
+}
+
+ul {
+	margin-left: 0;
+	padding-left: 0;
 }
 
 .icon-close:before {
@@ -106,6 +113,7 @@ button {
 	display: flex;
 	align-items: center;
 	margin-bottom: 30px;
+	position: relative;
 }
 
 .picker__select-type {
@@ -118,6 +126,56 @@ button {
 	color: #BFBFBF;
 	margin-left: 26px;
 	line-height: 35px;
+	position: relative;
+	cursor: pointer;
+}
+
+
+.picker__select-popup {
+	width: 191px;
+	border-radius: 6px;
+	border: 1px solid #5F5F5F;
+	position: absolute;
+	top: 0;
+	right: 23px;
+	z-index: 5;
+	display: none;
+}
+
+.picker__select-type.active~.picker__select-popup {
+	display: block;
+}
+
+.arrow {
+	width: 8px;
+	height: 8px;
+	border-top: 1px solid #8D8D8D;
+	border-right: 1px solid #8D8D8D;
+	position: absolute;
+	top: 11px;
+	right: 38px;
+	transform: rotate(135deg);
+	z-index: 6;
+	transition: transform .3s, top .3s;
+}
+
+.picker__select-type.active~.arrow {
+	transform: rotate(-45deg);
+	top: 14px;
+}
+
+
+.picker__select-popup li {
+	height: 40px;
+	cursor: pointer;
+	line-height: 35px;
+	padding-left: 15px;
+	background-color: #424242;
+	transition: background-color 0.3s;
+}
+
+.picker__select-popup li:hover {
+	background-color: #505050;
 }
 
 .picker__title {
