@@ -16,86 +16,91 @@
 <body>
    <div class="wrapper">
       <div class="container">
-         <table>
-            <caption>
-               Таблица цветов
-               <button class="table__btn-save icon-save">
-               </button>
-               <button class="table__btn-close icon-close">
-               </button>
-            </caption>
-            <tr>
-               <th>Цвет</th>
-               <th>Название</th>
-               <th>Тип</th>
-               <th>Код</th>
-               <th>Изменить</th>
-               <th>Удалить</th>
-            </tr>
-            <tbody id="table">
-            </tbody>
-            <tbody class="table__btn-add">
+         <div class="wrapper__top">
+            <table class="table">
+               <caption>
+                  Таблица цветов
+                  <button class="table__btn-save icon-save">
+                  </button>
+                  <button class="table__btn-close icon-close">
+                  </button>
+               </caption>
                <tr>
-                  <td colspan="6"><button>Добавить цвет</button></td>
+                  <th>Цвет</th>
+                  <th>Название</th>
+                  <th>Тип</th>
+                  <th>Код</th>
+                  <th>Изменить</th>
+                  <th>Удалить</th>
                </tr>
-            </tbody>
-         </table>
+               <tbody id="tbody">
+               </tbody>
+               <tbody class="table__btn-add">
+                  <tr>
+                     <td colspan="6"><button>Добавить цвет</button></td>
+                  </tr>
+               </tbody>
+            </table>
 
-         <div class="body__picker">
-            <form>
-               <h4 class="picker__title">Добавление цвета</h4>
-               <div class="picker__input">
-                  <label class="picker__lable" for="name-color">Название цвета</label>
-                  <input id="input_name-color" placeholder="Введите название" type="text">
-               </div>
-               <div class="picker__select">
-                  <label class="picker__lable" for="name-color">Выберите тип</label>
-                  <div class="picker__select-type">Main</div>
-                  <span class="arrow"></span>
-                  <div class="picker__select-popup">
-                     <ul>
-                        <li>Main</li>
-                        <li>Primary</li>
-                        <li>Secondary</li>
-                        <li>Base</li>
-                     </ul>
+            <div class="body__picker">
+               <form>
+                  <h4 class="picker__title">Добавление цвета</h4>
+                  <div class="picker__input">
+                     <label class="picker__lable" for="name-color">Название цвета</label>
+                     <input id="input_name-color" placeholder="Введите название" type="text">
                   </div>
-               </div>
-               <div class="picker__wrapper">
-                  <div class="picker" id="primary_block">
-
-                     <div id="line">
-                        <div id="arrows">
-                           <div class="left_arrow"></div>
-                        </div>
-                     </div>
-
-                     <div id="block_picker">
-                        <img
-                           src="https://lh3.googleusercontent.com/-8Dm4nhAOssQ/T_IqwyIFXmI/AAAAAAAAACA/4QKmS7s_otE/s256/bgGradient.png"
-                           class="bk_img">
-                        <div class="circle" id="circle">
-                        </div>
-
-                     </div>
-                     <div class="picker__type-color">
-                        <p>Color</p>
-                        <div class="picker__type">HEX</div>
-                        <div class="picker__res">ffffff</div>
-                        <div id="out_color" class="out_color"></div>
-                     </div>
-                     <div class="picker__type-color">
-                        <div class="picker__rgb">R <span>255</span></div>
-                        <div class="picker__rgb">G <span>255</span></div>
-                        <div class="picker__rgb">B <span>255</span></div>
-                     </div>
-                     <div class="block__colors">
-                        <div></div>
+                  <div class="picker__select">
+                     <label class="picker__lable" for="name-color">Выберите тип</label>
+                     <div class="picker__select-type">Main</div>
+                     <span class="arrow"></span>
+                     <div class="picker__select-popup">
+                        <ul>
+                           <li>Main</li>
+                           <li>Primary</li>
+                           <li>Secondary</li>
+                           <li>Base</li>
+                        </ul>
                      </div>
                   </div>
-               </div>
-               <button class="picker__btn">Добавить</button>
-            </form>
+                  <div class="picker__wrapper">
+                     <div class="picker" id="primary_block">
+
+                        <div id="line">
+                           <div id="arrows">
+                              <div class="left_arrow"></div>
+                           </div>
+                        </div>
+
+                        <div id="block_picker">
+                           <img
+                              src="https://lh3.googleusercontent.com/-8Dm4nhAOssQ/T_IqwyIFXmI/AAAAAAAAACA/4QKmS7s_otE/s256/bgGradient.png"
+                              class="bk_img">
+                           <div class="circle" id="circle">
+                           </div>
+
+                        </div>
+                        <div class="picker__type-color">
+                           <p>Color</p>
+                           <div class="picker__type">HEX</div>
+                           <div class="picker__res">ffffff</div>
+                           <div id="out_color" class="out_color"></div>
+                        </div>
+                        <div class="picker__type-color">
+                           <div class="picker__rgb">R <span>255</span></div>
+                           <div class="picker__rgb">G <span>255</span></div>
+                           <div class="picker__rgb">B <span>255</span></div>
+                        </div>
+                        <div class="block__colors">
+                           <div></div>
+                        </div>
+                     </div>
+                  </div>
+                  <button class="picker__btn">Добавить</button>
+               </form>
+            </div>
+         </div>
+         <div class="sphere">
+            <canvas id="webgl-canvas" width="800" height="500"></canvas>
          </div>
       </div>
    </div>
@@ -104,6 +109,16 @@
       picker.init();
    </script>
    <script src="app.js"></script>
+   <script src="js/renderer.js"></script>
+   <script src="js/geometry.js"></script>
+   <script src="js/transformation.js"></script>
+   <script src="js/camera.js"></script>
+   <script src="js/vbo.js"></script>
+   <script src="js/material.js"></script>
+   <script src="js/texture.js"></script>
+   <script src="js/mesh.js"></script>
+   <script src="js/light.js"></script>
+   <script src="js/main.js"></script>
 </body>
 
 </html>

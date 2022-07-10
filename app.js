@@ -3,7 +3,7 @@
 window.addEventListener('DOMContentLoaded', () => {
    const addTableBtn = document.querySelector('.table__btn-add'),
       addForm = document.querySelector('form'),
-      addRows = document.getElementById('table'),
+      addRows = document.getElementById('tbody'),
       inputName = document.getElementById('input_name-color'),
       selectType = document.querySelector('.picker__select-type'),
       сolorText = document.querySelector('.picker__res'),
@@ -16,7 +16,8 @@ window.addEventListener('DOMContentLoaded', () => {
    const colorsList = [
       { name: "Мятное утро", type: "Main", color: '#86EAE9' },
       { name: "Лавандовый пунш", type: "Side", color: '#B8B2DD' },
-      { name: "Морозное небо", type: "Side", color: '#00bfff' }
+      { name: "Морозное небо", type: "Side", color: '#00bfff' },
+      { name: "Карминово-красный", type: "Base", color: '#ff0033' }
    ];
 
    //===Сохранение, удаление LocalStorage==========================================================================================================
