@@ -9,7 +9,9 @@ window.addEventListener('DOMContentLoaded', () => {
       сolorText = document.querySelector('.picker__res'),
       selectPopup = document.querySelectorAll('.picker__select-popup li'),
       bodyPicker = document.querySelector('.body__picker'),
-      save = document.querySelector('.table__btn-save');
+      save = document.querySelector('.table__btn-save'),
+      clearData = document.querySelector('.table__btn-close'),
+      blockColors = document.querySelector('.block__colors');
 
    const colorsList = [
       { name: "Мятное утро", type: "Main", color: '#86EAE9' },
@@ -17,10 +19,35 @@ window.addEventListener('DOMContentLoaded', () => {
       { name: "Морозное небо", type: "Side", color: '#00bfff' }
    ];
 
+   //===Сохранение, удаление LocalStorage==========================================================================================================
+
    save.addEventListener('click', () => {
-      localStorage.setItem('colorsList', JSON.stringify(colorsList));
-      alert('Данные сохранены')
+      if (saveColorsList) {
+         localStorage.setItem('colorsListLocalStorage', JSON.stringify(saveColorsList));
+      } else {
+         localStorage.setItem('colorsListLocalStorage', JSON.stringify(colorsList));
+      }
+      alert('Данные сохранены');
+   });
+
+   let saveColorsList = JSON.parse(localStorage.getItem('colorsListLocalStorage'));
+
+   if (saveColorsList) {
+      createColorsList(saveColorsList, addRows, blockColors);
+   } else {
+      createColorsList(colorsList, addRows, blockColors);
+   }
+
+   clearData.addEventListener('click', () => {
+      let isDelete = confirm("Вы уверены, что хотите удалить данные?")
+      if (isDelete) {
+         localStorage.clear();
+      }
    })
+
+   //--------------------------------------------------------------------------------------------------------------------------------------
+
+   //====Добавление нового цвета в таблицу=================================================================================================
 
    addForm.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -34,17 +61,26 @@ window.addEventListener('DOMContentLoaded', () => {
             newName = `${newName.substring(0, 13)}...`
          }
 
-         colorsList.push({ name: newName, type: newType, color: newColor });
-         createColorsList(colorsList, addRows);
+         if (saveColorsList) {
+            saveColorsList.push({ name: newName, type: newType, color: newColor });
+            createColorsList(saveColorsList, addRows, blockColors);
+         } else {
+            colorsList.push({ name: newName, type: newType, color: newColor });
+            createColorsList(colorsList, addRows, blockColors);
+         }
 
          bodyPicker.classList.remove('active');
 
       } else {
          alert('Введите название цвета!')
       }
-   })
+   });
 
-   function createColorsList(arr, parent) {
+   //--------------------------------------------------------------------------------------------------------------------------------------
+
+   //====Функция создание списка таблицы===================================================================================================
+
+   function createColorsList(arr, parent, parentBlockColor) {
       parent.innerHTML = '';
 
       arr.forEach(elem => {
@@ -62,6 +98,16 @@ window.addEventListener('DOMContentLoaded', () => {
          `
       });
 
+
+      // Добавлнение нового цвета в .block__colors
+      parentBlockColor.innerHTML = '';
+      arr.forEach(elem => {
+         parentBlockColor.innerHTML += `
+         <div style="background-color: ${elem.color};"></div>
+         `
+      })
+
+      // Удаление строки в таблице
       document.querySelectorAll('.delete').forEach((btn, i) => {
          btn.addEventListener('click', () => {
             btn.parentElement.remove();
@@ -70,7 +116,9 @@ window.addEventListener('DOMContentLoaded', () => {
       });
    }
 
-   createColorsList(colorsList, addRows);
+   //--------------------------------------------------------------------------------------------------------------------------------------
+
+   //===Изменение типа Select(Main, Primary, Secondary, Base)===и открытие добавление цвета================================================
 
    selectType.addEventListener('click', (e) => {
       e.target.classList.add('active');
@@ -86,4 +134,6 @@ window.addEventListener('DOMContentLoaded', () => {
    addTableBtn.addEventListener('click', () => {
       bodyPicker.classList.add('active');
    })
+
+   //--------------------------------------------------------------------------------------------------------------------------------------
 })

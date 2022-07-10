@@ -121,7 +121,8 @@ var Line = {
 	}
 };
 
-const resColor = document.querySelector('.picker__res')
+const resColor = document.querySelector('.picker__res');
+const resRgb = document.querySelectorAll('.picker__rgb span')
 
 var Block = {
 
@@ -173,8 +174,16 @@ var Block = {
 
 			picker.out_color.style.backgroundColor = "rgb(" + convert.hsv_rgb(Line.Hue, S, V) + ")";
 			var _res = convert.hsv_rgb(Line.Hue, S, V);
+			resRgb.forEach((span, i) => span.innerHTML = _res[i])
 			_res = _res[0].toString(16) + "" + _res[1].toString(16) + "" + _res[2].toString(16);
-			resColor.innerHTML = _res
+			if (_res.length <= 4) {
+				_res + 00
+			} else if (_res.length <= 5) {
+				_res + 0
+			} else {
+				resColor.innerHTML = _res
+			}
+
 		}
 
 		block.onclick = function (e) { Block.cPos(e); }

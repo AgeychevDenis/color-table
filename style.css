@@ -81,6 +81,7 @@ button {
 
 .body__picker {
 	opacity: 0;
+	visibility: hidden;
 	position: relative;
 	height: 645px;
 	width: 320px;
@@ -93,6 +94,7 @@ button {
 
 .body__picker.active {
 	opacity: 1;
+	visibility: visible;
 }
 
 .picker__lable {
@@ -229,6 +231,49 @@ button {
 
 .picker__type-color p {
 	font-size: 12px;
+}
+
+.picker__rgb {
+	background-color: #3C3C3C;
+	width: 70px;
+	height: 25px;
+	font-size: 11px;
+	color: #fff;
+	padding-left: 10px;
+	line-height: 23px;
+	border: 1px solid #4F4F4F;
+	border-radius: 2px;
+	margin-right: 18px;
+}
+
+.picker__rgb:last-child {
+	margin-right: 5px;
+}
+
+.picker__rgb span {
+	color: #BDBDBD;
+	margin-left: 15px;
+}
+
+.block__colors {
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 13px;
+	margin-left: 9px;
+}
+
+.block__colors div {
+	width: 20px;
+	height: 20px;
+	background-color: #fff;
+	margin-right: 15px;
+	border-radius: 3px;
+	margin-bottom: 10px;
+}
+
+.block__colors div:nth-of-type(7),
+.block__colors div:nth-of-type(14) {
+	margin-right: 0;
 }
 
 .picker__type {
